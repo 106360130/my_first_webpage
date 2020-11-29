@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>
+            測試網頁
+        </title>
+        <script
+        src= "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("#change").click(function(){
+                    $("#textarea").text("利用按鈕改變文字了");
+                });
+
+
+                $("#ajaxBtn").click(function(){
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        $("#textarea").text(this.responseText);
+                    }
+                };
+                xhttp.open("GET", "http://localhost:3000/users",true);
+                xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+                xhttp.send("mydata=123");
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <p id="textarea"> 這是初始網頁的內容</p>
+        <button type="button" id="change"> 改變文字</button>
+
+        <hr />
+        <form action="http://localhost:3000/test" method="GET">
+            <input type="text" name="mydata" id="mydata" />
+            <button type="submit">送出</button>
+            <button type="button" id="ajaxBtn">非同步送出</button>
+            </form>
+
+
+        </body>
+</html>
