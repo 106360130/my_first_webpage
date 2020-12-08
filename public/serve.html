@@ -1,0 +1,130 @@
+<html><head>
+	<title>om2m test</title>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap CSS/JS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script>
+function getDevice(){
+	console.log("getDevice")
+	$.ajax({
+		url: 'localhost:/test',
+		type: 'GET',
+		success: function (response) {
+			var trHTML = '';
+			trHTML += '<tr>'
+				$.each(response[Object.keys(response)[0]], function (i, val) {
+					trHTML += '<td>' + i + '</td>';
+				});
+			trHTML += '</tr>';
+			$.each(response, function (i, item) {
+				trHTML += '<tr>'
+				$.each(item, function (i, val) {
+					trHTML += '<td>' + val + '</td>';
+				});
+				trHTML += '</tr>';
+			});
+			$('#records_table').html(trHTML);
+		}
+	});
+}
+
+function getData(){
+	console.log("getData")
+	console.log( $('#deviceName').val() )
+	if( $('#deviceName').val().length == 0){
+		alert("請輸入名稱")
+		return
+	}
+	$.ajax({
+		url: '/api/device/data?name=' + $('#deviceName').val() ,
+		type: 'GET',
+		success: function (response) {
+			var trHTML = '';
+			trHTML += '<tr>'
+				$.each(response[Object.keys(response)[0]], function (i, val) {
+					trHTML += '<td>' + i + '</td>';
+				});
+			trHTML += '</tr>';
+			$.each(response, function (i, item) {
+				trHTML += '<tr>'
+				$.each(item, function (i, val) {
+					trHTML += '<td>' + val + '</td>';
+				});
+				trHTML += '</tr>';
+			});
+			$('#records_table').html(trHTML);
+		}
+	});
+}
+
+</script><script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/util.js"></script><script src="chrome-extension://jhffgcfmcckgmioipfnmbannkpncfipo/pagejs.js"></script></head>
+
+<body>
+
+	<div class="container">
+		<form action="om2m" method="POST">
+			<input type="text" name="action" class="input form-control" value="create" hidden="">
+			<div class="field">
+				<label for="name" class="form-control-label">裝置名稱</label>
+				<div class="control ">
+					<input type="text" name="name" class="input form-control" required="required">
+				</div>
+			</div>
+			<div class="field is-grouped">
+			  <div class="control">
+				<button class="button is-primary is-small btn btn-primary shadow mt-3 px-2 col-12">新增</button>
+			  </div>
+			</div>
+		</form>
+
+		<form action="om2m" method="POST">
+			<input type="text" name="action" class="input form-control" value="delete" hidden="">
+			<div class="field">
+				<label for="name" class="form-control-label">裝置名稱</label>
+				<div class="control ">
+					<input type="text" name="name" class="input form-control" required="required">
+				</div>
+			</div>
+			<div class="field is-grouped">
+			  <div class="control">
+				<button class="button is-danger is-small btn btn-danger shadow mt-3 px-2 col-12">刪除</button>
+			  </div>
+			</div>
+		</form>
+
+		<form action="om2m" method="POST">
+			<input type="text" name="action" class="input form-control" value="insert" hidden="">
+			<div class="field">
+				<label for="name" class="form-control-label">裝置名稱</label>
+				<div class="control ">
+					<input type="text" name="name" class="input form-control" required="required">
+				</div>
+			</div>
+			<div class="field">
+				<label for="value" class="form-control-label">內容</label>
+				<div class="control ">
+					<input type="text" name="value" class="input form-control" required="required">
+				</div>
+			</div>
+			<div class="field is-grouped">
+				<div class="control">
+					<button class="button is-primary is-small btn btn-success shadow mt-3 px-2 col-12">新增資料</button>
+				</div>
+			</div>
+		</form>
+
+		<button class="button is-primary is-small btn btn-success shadow mt-3 px-2 col-12" onclick="getDevice()">查詢裝置</button>
+
+		<div class="field">
+			<label for="value" class="form-control-label">裝置名稱</label>
+			<div class="control ">
+				<input id="deviceName" type="text" name="name" class="input form-control" required="required">
+			</div>
+		</div>
+		<button class="button is-primary is-small btn btn-success shadow mt-3 px-2 col-12" onclick="getData()">查詢資料</button>
+		<table id="records_table" border="1">
+		</table>
+	</div>
+
+</body></html>

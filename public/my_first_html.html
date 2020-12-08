@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <script
+        src= "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#change").click(function(){
+                $('#textarea').text("利用按鈕改變文字")
+            })
+        });
+
+        $("#ajaxBtn").click(function(){
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                $("#textarea").text(this.responseText);
+            }
+            xhttp.open("GET", "http://localhost:3000/users",true);
+            xhttp.send();
+        });
+
+    </script>
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+        <link rel="stylesheet" href="./my_first_html.css">
+        <link rel="stylesheet" href="./Navigation.css">
+    </head>
+
+   <div class= "header">
+       <h1 style="background-color:Tomato;"> Samh is song god!!</h1>
+   </div>
+
+
+   <div class= "article">
+    <h2> samh and his aunt</h2>
+   </div>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>id</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <th>sanh</th>
+            <th>king</th>
+            <th>1000000</th>
+        </tr>
+        <tr>
+            <th>aunt</th>
+            <th>queen</th>
+            <th>0000001</th>
+        </tr>
+    </table>
+
+    <form action = "/users" method="GET">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name">
+        <label for="mail">E-mail</label>
+        <input type="text" id="mail" name="user_mail">
+        <button type="submit">Send your message</button>
+    </form>
+
+    <!--css模組-->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+
+
+        <p id="textarea"> 這是初始網頁的內容</p>
+        <button type="button" id="change"> 改變文字</button>
+
+        <hr />
+        <form action="/test" method="GET">
+            <input type="text" name="mydata" id="mydata" />
+            <button type="submit">送出</button>
+            <button type="button" id="ajaxBtn">非同步送出</button>
+            </form>
+
+
+
+<!--
+    <body>
+        <img src="https://s.yimg.com/ny/api/res/1.2/8GARrOFyTrNXyfsyi0RL0g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTYzNi40NDQ0NDQ0NDQ0NDQ1/https://s.yimg.com/uu/api/res/1.2/DdytqdFTgtQuxVrHLDdmjQ--~B/aD03MTY7dz0xMDgwO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2019-11/7b5b5330-112b-11ea-a77f-7c019be7ecae"alt="coooool">
+    </body>
+-->
+
+</html>
+
+
