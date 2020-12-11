@@ -102,4 +102,21 @@ function creat_content_instance(name){
 
 //console.log(XMLhttpPost('http://127.0.0.1:8080/~/mn-cse/cnt-635825586',creat_content_instance('Samh_contentinstance')))
 
+/*
+function XMLhttpGet(theUrl)  // 對m2m GET
+{
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+	    console.log(xmlHttp.responseText)
+    }
 
+    xmlHttp.open( "GET", theUrl, true); //false for synchronous request
+    xmlHttp.setRequestHeader('X-M2M-Origin', 'admin:admin')
+    xmlHttp.send()
+    return xmlHttp.responseText;
+}
+
+console.log(XMLhttpGet('http://localhost:8080/~/mn-cse?rcn=5&lvl=1'))
+*/

@@ -12,6 +12,8 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "sync-request": "^6.1.0"
+    "sync-request": "^6.1.0",
+    "xmlhttprequest": "^1.8.0",
+    "xmlparser": "^0.1.0"
   }
 }

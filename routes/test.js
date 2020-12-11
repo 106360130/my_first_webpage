@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send(read_sensor());
+
 });
 
 /* POST users listing. */
@@ -13,7 +15,7 @@ router.post('/', function(req, res, next) {
   res.send('received data='+req.body.mydata2);
 });
 
-
+///////////////////////////////////////////////////////////////////
 function create_sensor(name){
   headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -28,13 +30,19 @@ function create_sensor(name){
   var res = request('POST', '	http://127.0.0.1:8080/~/mn-cse' , {headers:headers , body:xml});
   console.log(res.getBody('utf-8'));
 }
-
 function read_sensor(){
   headers = {
     'X-M2M-Origin': 'admin:admin',
+    "Accept": "application/json"
   }
   var res = request('GET', 'http://localhost:8080/~/mn-cse?rcn=5&lvl=1' , {headers:headers });
+  console.log( JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch'])
   return res.getBody('utf-8')
 }
-//console.log(read_sensor())
+/////////////////////////////////////////////////////////////////////////
+
+read_sensor()
+
+
+
 module.exports = router;
