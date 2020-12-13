@@ -11,11 +11,12 @@ router.get('/', function(req, res, next) {
 
 /* POST users listing. */
 router.post('/', function(req, res, next) {
-  create_sensor(req.body.mydata2);
-  res.send('received data='+req.body.mydata2);
+  create_sensor(req.body.mydata);
+  res.send('received data='+req.body.mydata);
 });
 
-///////////////////////////////////////////////////////////////////
+/*  post something */
+
 function create_sensor(name){
   headers = {
     'X-M2M-Origin': 'admin:admin',
@@ -27,21 +28,57 @@ function create_sensor(name){
   <lbl>Type/sensor Category/temperature Location/home</lbl>
   <rr>false</rr>
 </m2m:ae>`
-  var res = request('POST', '	http://127.0.0.1:8080/~/mn-cse' , {headers:headers , body:xml});
+  var res = request('POST', 'http://127.0.0.1:8080/~/mn-cse' , {headers:headers , body:xml});
   console.log(res.getBody('utf-8'));
 }
-function read_sensor(){
+
+function creat_DESCRIPTOR_container(AEname,DCname){
+  headers = {
+    'X-M2M-Origin': 'admin:admin',
+    'Content-Type': 'application/xml;ty=3'
+  }
+  //var path = read_sensor_url(AEname)
+  //console.log('http://localhost:8080/~'+path)
+  xml=
+	`<m2m:cnt xmlns:m2m="http://www.onem2m.org/xml/protocols" rn="${DCname}">
+	</m2m:cnt>`
+  var res = request('POST', `http://localhost:8080/~/mn-cse/mn-name/${AEname}` , {headers:headers , body:xml});
+  //var res = request('POST', 'http://localhost:8080/~/mn-cse/CAE447774024' , {headers:headers , body:xml});
+
+  console.log(res.getBody('utf-8'));
+}
+///////////////////////////////////////////////
+
+/*read imformation*/
+
+function read_all_sensor(){
   headers = {
     'X-M2M-Origin': 'admin:admin',
     "Accept": "application/json"
   }
   var res = request('GET', 'http://localhost:8080/~/mn-cse?rcn=5&lvl=1' , {headers:headers });
-  console.log( JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch'])
-  return res.getBody('utf-8')
+  //console.log( JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch'])
+  return JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch']
 }
-/////////////////////////////////////////////////////////////////////////
-
-read_sensor()
+/*
+function read_sensor_url(name){
+  headers = {
+    'X-M2M-Origin': 'admin:admin',
+    "Accept": "application/json"
+  }
+  var res = request('GET', 'http://localhost:8080/~/mn-cse?rcn=5&lvl=1' , {headers:headers });
+  var all_sensor = read_all_sensor()
+  for (i=1;i<all_sensor.length-1;i++)
+  {
+    if (name == all_sensor[i].nm)
+    {
+      //console.log(all_sensor[i])
+      return  all_sensor[i].val
+    }
+  }
+}*/
+/////////////////////////////////////
+//creat_DESCRIPTOR_container('apple','descriptor5')
 
 
 

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('sync-request');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,11 +9,28 @@ router.get('/', function(req, res, next) {
 
 /* POST users listing. */
 router.post('/', function(req, res, next) {
-  create_sensor(req.body.mydata2);
+  console.log(req.body.mydata2);
+  console.log(req.body.mydata3);
+
+  creat_DESCRIPTOR_container(req.body.mydata2,req.body.mydata3);
   res.send('received data='+req.body.mydata2);
 });
 
+function creat_DESCRIPTOR_container(AEname,DCname){
+  headers = {
+    'X-M2M-Origin': 'admin:admin',
+    'Content-Type': 'application/xml;ty=3'
+  }
+  //var path = read_sensor_url(AEname)
+  //console.log('http://localhost:8080/~'+path)
+  xml=
+	`<m2m:cnt xmlns:m2m="http://www.onem2m.org/xml/protocols" rn="${DCname}">
+	</m2m:cnt>`
+  var res = request('POST', `http://localhost:8080/~/mn-cse/mn-name/${AEname}` , {headers:headers , body:xml});
 
+  console.log(res.getBody('utf-8'));
+}
+/*
 module.exports = router;
 function XMLhttpGet(theUrl)  // 對m2m GET
 {
@@ -95,9 +113,9 @@ function creat_content_instance(name){
         '</m2m:cin>';
 	return msg;
 }
+*/
 
-
-//console.log(XMLhttpPost('http://127.0.0.1:8080/~/mn-cse/mn-name',creat_AE('Samh2'))) //要收到200 ok
+//console.log(XMLhttpPost('http://localhost:8080/~/mn-cse',creat_AE('Samh2'))) //要收到200 ok
 //console.log(XMLhttpPost('http://127.0.0.1:8080/~/mn-cse/mn-name/CAE562841172',creat_DESCRIPTOR_container('Samh_DESCRIPTOR2')))
 
 //console.log(XMLhttpPost('http://127.0.0.1:8080/~/mn-cse/cnt-635825586',creat_content_instance('Samh_contentinstance')))
@@ -120,3 +138,4 @@ function XMLhttpGet(theUrl)  // 對m2m GET
 
 console.log(XMLhttpGet('http://localhost:8080/~/mn-cse?rcn=5&lvl=1'))
 */
+module.exports = router;

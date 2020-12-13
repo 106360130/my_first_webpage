@@ -12,7 +12,20 @@
                     $.ajax('/test',   // request url
                         {
                             method:"POST",
-                            data:{"mydata2": $("#mydata2").val() },
+                            data:{"mydata": $("#mydata").val() },
+                            success: function (data, status, xhr) {// success callback function
+                                $('p').append(data);
+                        }
+                    });
+
+                });
+
+                $("#ajaxBtn2").click(function(){
+                    $.ajax('/serve',   // request url
+                        {
+                            method:"POST",
+                            data:{"mydata2": $("#mydata2").val(),
+                                  "mydata3": $("#mydata3").val() },
                             success: function (data, status, xhr) {// success callback function
                                 $('p').append(data);
                         }
@@ -42,20 +55,20 @@
         <button type="button" id="change">改變文字</button>
         <hr />
         <form action="./test" method="GET">
-            <input type="text" name="mydata" id="mydata" />
             <button type="submit">查詢</button>
         </form>
         <form action="./test" method="POST">
-            <input type="text" name="mydata2" id="mydata2" />
+            <input type="text" name="mydata" id="mydata" />
             <button type="button" id="ajaxBtn">Creat_Sensor</button>
         </form>
-        <form action="./test" method="POST">
+        <form action="./serve" method="POST">
+            <input type="text" name="mydata2" id="mydata2" />
             <input type="text" name="mydata3" id="mydata3" />
-            <button type="button" id="ajaxBtn">Creat_Descriptor</button>
+            <button type="button" id="ajaxBtn2">Creat_Descriptor</button>
         </form>
         <form action="./test" method="POST">
             <input type="text" name="mydata4" id="mydata4" />
-            <button type="button" id="ajaxBtn">Creat_Constent_Instance</button>
+            <button type="button" id="ajaxBtn3">Creat_Constent_Instance</button>
         </form>
     </body>
 </html>
