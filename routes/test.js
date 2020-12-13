@@ -47,6 +47,32 @@ function creat_DESCRIPTOR_container(AEname,DCname){
 
   console.log(res.getBody('utf-8'));
 }
+
+function creat_DESCRIPTOR_contentInstance(AEname,DCname){
+  headers = {
+    'X-M2M-Origin': 'admin:admin',
+    'Content-Type': 'application/xml;ty=4'
+  }
+  //var path = read_sensor_url(AEname)
+  //console.log('http://localhost:8080/~'+path)
+  xml=
+	`<m2m:cin xmlns:m2m="http://www.onem2m.org/xml/protocols">
+    <cnf>application/xml</cnf>
+    <con>
+        &lt;obj&gt;
+            &lt;str name=&quot;type&quot; val=&quot;Temperature_Sensor&quot;/&gt;
+            &lt;str name=&quot;location&quot; val=&quot;Home&quot;/&gt;
+            &lt;str name=&quot;appId&quot; val=&quot;MY_SENSOR&quot;/&gt;
+            &lt;op name=&quot;getValue&quot; href=&quot;/in-cse/in-name/MY_SENSOR/DATA/la&quot;
+         in=&quot;obix:Nil&quot; out=&quot;obix:Nil&quot; is=&quot;retrieve&quot;/&gt;
+        &lt;/obj&gt;
+    </con>
+</m2m:cin>`
+  var res = request('POST', `http://localhost:8080/~/mn-cse/mn-name/${AEname}/${DCname}` , {headers:headers , body:xml});
+  //var res = request('POST', 'http://localhost:8080/~/mn-cse/CAE447774024' , {headers:headers , body:xml});
+
+  console.log(res.getBody('utf-8'));
+}
 ///////////////////////////////////////////////
 
 /*read imformation*/
@@ -79,7 +105,7 @@ function read_sensor_url(name){
 }*/
 /////////////////////////////////////
 //creat_DESCRIPTOR_container('apple','descriptor5')
-
+creat_DESCRIPTOR_contentInstance('apple','dd')
 
 
 module.exports = router;

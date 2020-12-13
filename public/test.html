@@ -19,13 +19,24 @@
                     });
 
                 });
-
                 $("#ajaxBtn2").click(function(){
                     $.ajax('/serve',   // request url
                         {
                             method:"POST",
                             data:{"mydata2": $("#mydata2").val(),
                                   "mydata3": $("#mydata3").val() },
+                            success: function (data, status, xhr) {// success callback function
+                                $('p').append(data);
+                        }
+                    });
+
+                });
+                $("#ajaxBtn2").click(function(){
+                    $.ajax('/contentInstance',   // request url
+                        {
+                            method:"POST",
+                            data:{"mydata2": $("#mydata4").val(),
+                                  "mydata3": $("#mydata5").val() },
                             success: function (data, status, xhr) {// success callback function
                                 $('p').append(data);
                         }
@@ -68,6 +79,7 @@
         </form>
         <form action="./test" method="POST">
             <input type="text" name="mydata4" id="mydata4" />
+            <input type="text" name="mydata5" id="mydata5" />
             <button type="button" id="ajaxBtn3">Creat_Constent_Instance</button>
         </form>
     </body>
