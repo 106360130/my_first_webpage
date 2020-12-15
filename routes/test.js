@@ -105,7 +105,7 @@ function read_sensor_url(name){
 }*/
 /////////////////////////////////////
 //creat_DESCRIPTOR_container('apple','descriptor5')
-creat_DESCRIPTOR_contentInstance('apple','dd')
+//creat_DESCRIPTOR_contentInstance('apple','dd')
 
 
 module.exports = router;

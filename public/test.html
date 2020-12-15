@@ -31,12 +31,12 @@
                     });
 
                 });
-                $("#ajaxBtn2").click(function(){
+                $("#ajaxBtn3").click(function(){
                     $.ajax('/contentInstance',   // request url
                         {
                             method:"POST",
-                            data:{"mydata2": $("#mydata4").val(),
-                                  "mydata3": $("#mydata5").val() },
+                            data:{"mydata4": $("#mydata4").val(),
+                                  "mydata5": $("#mydata5").val() },
                             success: function (data, status, xhr) {// success callback function
                                 $('p').append(data);
                         }

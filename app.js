@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 //
 var testRouter = require('./routes/test');
 var servetRouter = require('./routes/serve');
-var contentinstanceRouter = require('./routes/contentinstance');
+var contentInstanceRouter = require('./routes/contentInstance');
 
 var app = express();
 
