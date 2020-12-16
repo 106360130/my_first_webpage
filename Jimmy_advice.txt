@@ -1,0 +1,3 @@
+我原本設置Create_Sensor的方式是錯的。
+
+正確應該為按下按鈕create_sensor的時候，應該還要自動自動增加3個「DESCRIPTOR container」，分別為DATA、DESCRIPTOR、ONLINE。
