@@ -12,6 +12,11 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
   create_sensor(req.body.mydata);
+  creat_DESCRIPTOR_container(req.body.mydata,'DATA')
+  creat_DESCRIPTOR_container(req.body.mydata,'DESCRIPTOR')
+  creat_DESCRIPTOR_container(req.body.mydata,'ONLINE')
+
+
   res.send('received data='+req.body.mydata);
 });
 
