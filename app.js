@@ -8,8 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //
 var testRouter = require('./routes/test');
-var servetRouter = require('./routes/serve');
+
 var contentInstanceRouter = require('./routes/contentInstance');
+var Delete_AERouter = require('./routes/Delete_AE');
 
 var app = express();
 
@@ -28,8 +29,8 @@ app.use('/users', usersRouter);
 //
 app.use('/test', testRouter);
 
-app.use('/serve',servetRouter);
 app.use('/contentInstance',contentInstanceRouter);
+app.use('/Delete_AE',Delete_AERouter);
 
 
 

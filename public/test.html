@@ -20,7 +20,7 @@
 
                 });
                 $("#ajaxBtn2").click(function(){
-                    $.ajax('/serve',   // request url
+                    $.ajax('/contentInstance',   // request url
                         {
                             method:"POST",
                             data:{"mydata2": $("#mydata2").val(),
@@ -32,18 +32,16 @@
 
                 });
                 $("#ajaxBtn3").click(function(){
-                    $.ajax('/contentInstance',   // request url
+                    $.ajax('/Delete_AE',   // request url
                         {
                             method:"POST",
-                            data:{"mydata4": $("#mydata4").val(),
-                                  "mydata5": $("#mydata5").val() },
+                            data:{"mydata4": $("#mydata4").val()},
                             success: function (data, status, xhr) {// success callback function
                                 $('p').append(data);
                         }
                     });
 
                 });
-
             });
             function myFunction(xml) {
             var i;
@@ -72,15 +70,16 @@
             <input type="text" name="mydata" id="mydata" />
             <button type="button" id="ajaxBtn">Creat_Sensor</button>
         </form>
-        <form action="./serve" method="POST">
+        <form action="./test" method="POST">
             <input type="text" name="mydata2" id="mydata2" />
             <input type="text" name="mydata3" id="mydata3" />
-            <button type="button" id="ajaxBtn2">Creat_Descriptor</button>
+            <button type="button" id="ajaxBtn2">Creat_Constent_Instance</button>
         </form>
-        <form action="./test" method="POST">
+        <form action="./Delete_AE" method="POST">
             <input type="text" name="mydata4" id="mydata4" />
-            <input type="text" name="mydata5" id="mydata5" />
-            <button type="button" id="ajaxBtn3">Creat_Constent_Instance</button>
+            <button type="button" id="ajaxBtn3">Delete_Sensor</button>
+        </form>
+
         </form>
     </body>
 </html>

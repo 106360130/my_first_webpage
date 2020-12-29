@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
 
-    creat_DESCRIPTOR_contentInstance(req.body.mydata4,req.body.mydata5);
-  res.send('received data='+req.body.mydata4);
+  creat_DESCRIPTOR_contentInstance(req.body.mydata2,req.body.mydata3);
+  res.send('received data='+req.body.mydata2);
 });
 
 
