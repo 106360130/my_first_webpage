@@ -6,7 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//
+//這裡面是亂寫的
+/*
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+var testRouter = require('./routes/test');
+*/
+//這裡面是亂寫的
 var testRouter = require('./routes/test');
 
 var contentInstanceRouter = require('./routes/contentInstance');
